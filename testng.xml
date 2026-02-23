@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<!--
+both files are not compulsary, but recom for mordern testng version
+
+< is for **XML declaration - xml version & Defines character encoding (supports special characters).**
+ Technically **optional**, but strongly recommended
+
+< is for This links your XML file to a **DTD (Document Type Definition)- Validate this XML against TestNG’s official structure rules**
+
+-->
+
+<suite name="SuiteName"
+
+       verbose="1"
+        <!-- Controls logging level in console.
+             0 = minimal logs
+             1 = default
+             2-10 = more detailed debugging logs -->
+
+        parallel="tests"
+        <!-- Defines what runs in parallel.
+             tests = each <test> block runs in separate thread
+             classes = classes run in parallel
+             methods = test methods run in parallel
+
+             -------- Prefferences
+             UI tests → parallel="classes"
+ ✔ Yes. Each class gets its own browser instance, reducing flakiness.
+
+ API tests → parallel="methods"
+ ✔ Yes. API tests are usually stateless, so running methods in parallel is fast and safe.
+
+ Unit tests → parallel="methods"
+ ✔ Yes. Unit tests are isolated logic, so method-level parallelization is ideal.
+
+             -->
+
+        thread-count="3"
+        <!-- Maximum number of threads used for parallel execution.
+             If parallel="tests", up to 3 <test> blocks run simultaneously -->
+
+        data-provider-thread-count="2"
+        <!-- Threads used specifically for @DataProvider(parallel=true).
+             Allows parallel data-driven test execution -->
+
+        preserve-order="true"
+        <!-- If true, executes classes/methods in the order defined in XML.
+             If false, TestNG may reorder execution -->
+
+        time-out="60000"
+        <!-- Maximum time (in milliseconds) allowed for each test method.
+             60000 = 60 seconds timeout protection -->
+
+        allow-return-values="true">
+        <!-- Allows @Test methods to return a value.
+             Example:
+             @Test
+             public String testAPI() {
+                 return "PASS";
+             }
+             (Rarely used in normal automation; mostly advanced/internal use) -->
+
+
+        <!-- ========================================= -->
+        <!-- SUITE LEVEL LISTENERS -->
+        <!-- Used for reporting, retry, logging, etc. -->
+        <!-- ========================================= -->
+<listeners>
+<listener class-name="com.example.listeners.MyListener"/>
+<!-- Retry Analyzer Listener -->
+<listener class-name="com.example.listeners.RetryListener"/>
+<!-- Custom Report Generator -->
+<listener class-name="com.example.listeners.ExtentReportListener"/>
+</listeners>
+
+        <!-- ========================================= -->
+        <!-- SUITE LEVEL PARAMETERS -->
+        <!-- Used for Environment Config, API Base URI,
+             Auth Tokens, Browser, etc -->
+        <!-- ========================================= -->
+<parameter name="env" value="qa"/>
+<parameter name="browser" value="chrome"/>
+
+        <!-- RestAssured Specific -->
+<parameter name="baseURI" value="<https://jsonplaceholder.typicode.com>"/>
+<parameter name="authToken" value="dynamic_or_static_token"/>
+
+        <!-- ========================================= -->
+        <!-- MULTIPLE TEST BLOCKS SUPPORTED -->
+        <!-- Logical grouping of execution -->
+        <!-- ========================================= -->
+
+<test name="TestBlock1"
+      parallel="classes"
+      thread-count="2"
+      preserve-order="true">
+
+<!-- TEST LEVEL PARAMETERS -->
+<parameter name="module" value="users"/>
+<parameter name="version" value="v1"/>
+
+<!-- GROUP FILTERING -->
+<groups>
+    <define name="api-group">
+        <include name="smoke"/>
+        <include name="integration"/>
+    </define>
+
+    <run>
+        <include name="api-group"/>
+        <exclude name="regression"/>
+    </run>
+</groups>
+
+<!-- RUN BY PACKAGE -->
+<packages>
+    <package name="com.epam.campus.restassured.tests"/>
+</packages>
+
+<!-- OR RUN BY CLASSES -->
+<classes>
+
+    <class name="com.epam.campus.restassured.tests.GetUserTest">
+        <methods>
+            <include name="testGetUserById"/>
+            <exclude name="testNegativeCase"/>
+        </methods>
+    </class>
+
+    <class name="com.epam.campus.restassured.tests.CreateUserTest"/>
+
+</classes>
+
+</test>
+
+        <!-- ========================================= -->
+        <!-- SECOND TEST BLOCK (Example: Regression) -->
+        <!-- ========================================= -->
+<test name="RegressionSuite"
+      parallel="methods"
+      thread-count="5">
+
+<groups>
+    <run>
+        <include name="regression"/>
+    </run>
+</groups>
+
+<packages>
+    <package name="com.epam.campus.restassured.tests.regression"/>
+</packages>
+
+</test>
+        </suite>
