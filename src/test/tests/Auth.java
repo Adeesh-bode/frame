@@ -26,11 +26,8 @@ public class Auth {
                 .statusCode(200);
     }
 
-
-
 //    BEARER TOKKENNNNN
-
-    private final String TOKEN = "wrong token here";
+    private final String TOKEN = "wrong_token";
 
     @Test
     public void verifyAccessWithValidToken() {
@@ -52,8 +49,6 @@ public class Auth {
                 .statusCode(401);
     };
 
-
-
     // OAUTH
     private final String TOKEN = "wrong token here";
 
@@ -72,10 +67,6 @@ public class Auth {
         System.out.println(res.getBody().prettyPrint());
     }
 
-
-
-
-
     // COOKIES
     @Test
     public void validateCookieSuccess(){
@@ -90,7 +81,6 @@ public class Auth {
     // header x-api-key
     @Test
     void testInvalidEndpoint() {
-
         given()
                 .header("x-api-key", API_KEY)
                 .log().all()
@@ -100,7 +90,4 @@ public class Auth {
                 .log().all()
                 .statusCode(404);
     }
-
-
-
 }

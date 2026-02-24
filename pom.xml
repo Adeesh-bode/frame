@@ -29,11 +29,19 @@
             <scope>test</scope>
         </dependency>
 
-<!--    just import of these can help deserializatn automatically-->
+        <!-- Jackson for JSON serialization/deserialization -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>2.16.1</version>
+            <version>2.18.1</version>
+        </dependency>
+
+        <!-- JSON Schema Validator for RestAssured -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>json-schema-validator</artifactId>
+            <version>5.5.0</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
