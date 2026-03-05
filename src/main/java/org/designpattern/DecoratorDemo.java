@@ -1,10 +1,18 @@
 package org.designpattern;
 
-// Component Interface
 /*
+
+Structural Pattern
+Extend Nature
+
+SOLID followed ( just makesure ISP - Clients should not be forced to depend on methods they do not use)
+
+// Component Interface
 ✅ Interface (most common & preferred)
 ✅ Abstract class (sometimes useful)
+
  */
+// Component Interface
 abstract class Pizza{
     public abstract String  getPizzaDescription();
     public abstract double getPizzaPrice();
@@ -59,6 +67,8 @@ class TomatoToppingDecorator extends PizzaDecorator{
     }
 }
 
+
+// CLIENT
 public class DecoratorDemo {
 
     public static void main(String[] args) {

@@ -3,10 +3,16 @@ package org.designpattern;
 /*
 
 Behavioural Pattern
+Implements Nature
+
+From blueprint to Strategies
+And a Context/Strategy Changer Concrete Class ( private obj (+DIP) + Strategy Changer + Strategy pass on )
+
 Key Principle Used: Open–Closed Principle [ add new payment methods without modifying existing code ]
 Constructn injection: DIP
 
  */
+
 
 interface Payment{
     abstract void pay();
@@ -30,6 +36,7 @@ class CreditCardPayment implements Payment{
 
 class ShoppingCart {
 //class PaymentStrategyService {
+    // Private Obj
     private Payment payment;
 
     ShoppingCart(Payment payment) {
