@@ -24,7 +24,6 @@ enum AppConfig{
 }
 
 public class Enum {
-
     public static void main(String[] args) throws IOException{
         String url = AppConfig.INSTANCE.getProperty("db-url");
         System.out.println("DB URL: " + url );
