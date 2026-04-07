@@ -18,7 +18,8 @@ class SingletonThreadSafe {
     public static SingletonThreadSafe getInstance(){
         if(INSTANCE == null){
             // to make thread safe
-            synchronized (SingletonThreadSafe.class){ //allows 1 thread at a time to enter this syn block
+            synchronized (SingletonThreadSafe.class){
+                // allows 1 thread at a time to enter this syn block
                 // check again as multiple thread can reach above null check
                 if(INSTANCE == null){
                     INSTANCE = new SingletonThreadSafe();

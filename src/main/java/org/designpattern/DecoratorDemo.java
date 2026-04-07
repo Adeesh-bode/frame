@@ -1,7 +1,6 @@
 package org.designpattern;
 
 /*
-
 Structural Pattern
 Extend Nature
 
@@ -54,7 +53,7 @@ class TomatoToppingDecorator extends PizzaDecorator{
         super(pizza);
     }
 
-    private final static  double cost = 100;
+    private final static double cost = 100;
 
     @Override
     public String  getPizzaDescription(){

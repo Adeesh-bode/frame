@@ -1,9 +1,7 @@
 package org.designpattern;
 
 /*
-
  The object is immutable after construction
-
  */
 
 class Person {
