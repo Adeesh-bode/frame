@@ -1,4 +1,4 @@
-package org.designpattern;
+package corejava.designpattern;
 
 /*
  The object is immutable after construction

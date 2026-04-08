@@ -1,4 +1,4 @@
-package org.designpattern.singleton;
+package corejava.designpattern.singleton;
 
 class SingletonThreadSafe {
 

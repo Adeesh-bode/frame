@@ -1,4 +1,4 @@
-package org.designpattern;
+package corejava.designpattern;
 
 
 // abstract pdt 1

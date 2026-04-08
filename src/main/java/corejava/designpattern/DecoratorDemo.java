@@ -1,4 +1,4 @@
-package org.designpattern;
+package corejava.designpattern;
 
 /*
 Structural Pattern

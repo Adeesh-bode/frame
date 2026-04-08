@@ -1,4 +1,4 @@
-package org.custom.exception;
+package corejava.custom.exception;
 
 class CustomUncheckedException extends RuntimeException {
     CustomUncheckedException(String message) {
